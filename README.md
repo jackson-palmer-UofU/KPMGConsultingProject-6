@@ -1,6 +1,6 @@
 # KPMG-Sponsored IS Consulting Challenge: Track A (Digital Transformation)
 **Client:** Wasatch Outfitters Collective (WOC)  
-**Team Members:** [Your Name], [Team Member 2], [Team Member 3], [Team Member 4]  
+**Team Members:** Jackson Palmer, [Team Member 2], [Team Member 3], [Team Member 4]  
 **Course:** IS 3060   
 
 ---
