@@ -1,33 +1,59 @@
-# KPMG-Sponsored IS Consulting Challenge: Track A (Digital Transformation)
+# IS 3060 KPMG Consulting Challenge — Track A: Digital Transformation
+
 **Client:** Wasatch Outfitters Collective (WOC)  
-**Team Members:** Jackson Palmer, [Team Member 2], [Team Member 3], [Team Member 4]  
-**Course:** IS 3060   
+**Consulting Track:** Track A — Digital Transformation  
+**Course:** IS 3060 (David Eccles School of Business, University of Utah)
 
 ---
 
-## Project Overview
-This repository contains our semester-long consulting deliverables for Wasatch Outfitters Collective (WOC), a growing outdoor recreation and retail company operating in Downtown SLC, Sandy, and Park City. 
+## Executive Problem Statement
 
-Our consulting engagement focuses on **Track A: Digital Transformation**. WOC's rapid growth has led to fragmented operations—specifically manual Google Sheets for rentals and paper tags for repairs—resulting in double-bookings, damaged gear being rented out, and wasted staff hours. This repository documents our end-to-end digital transformation journey, progressing from data-driven problem definition to process redesign, mobile prototyping, cloud infrastructure evaluation, proof-of-concept development, and an executive implementation roadmap.
+Wasatch Outfitters Collective (WOC) is a growing outdoor recreation and retail business operating three store locations (**Downtown SLC**, **Sandy**, and **Park City**) with offerings spanning retail gear sales, equipment rentals, repair services, guided outdoor experiences, and corporate team events. As demand has grown, WOC's internal operational workflows have remained fragmented:
 
----
+- **Disconnected Rental Tracking:** Each store manages rentals in separate Google Sheets, forcing staff to manually check availability across locations and call other stores to confirm inventory.
+- **Unlinked Repair Workflows:** Repair activities are tracked separately using paper tags and a standalone repair log, creating conflicting status records and risking damaged gear being reserved or rented out.
+- **Limited Managerial Visibility:** Managers lack unified, real-time visibility into utilization, repair bottlenecks, and cross-location inventory to support purchasing, maintenance scheduling, and customer service.
 
-## Repository Structure & Milestone Index
-
-- **`/milestone-01-tableau/`**
-  - *Lab 2 Deliverable:* Tableau workbook (`.twbx`), dashboard screenshots, and operational bottleneck analysis uncovering root causes in rental and repair data (`woc_track_a_rentals.csv`).
-- **`/milestone-02-process-design/`**
-  - *Lab 6 Deliverable:* As-Is vs. To-Be workflow diagrams, AI-assisted business analysis notes, and a structured software evaluation matrix for WOC's new digital solution.
-- **`/milestone-03-mobile-ux/`**
-  - *Lab 3 Deliverable:* Thunkable mobile app project export, UI/Blocks screenshots, and a demo walkthrough clip enabling store associates and repair techs to check gear availability in real time.
-- **`/milestone-04-cloud-infra/`**
-  - *Lab 5 Deliverable:* Google Cloud Compute Engine (GCP) VM instance configuration screenshots, firewall settings, and a cost-scale justification tailored to WOC's limited IT staff and budget.
-- **`/milestone-05-web-poc/`**
-  - *Lab 7 Deliverable:* Source code files and proof-of-concept screenshots demonstrating an AI-assisted web interface for streamlined rental and repair reservations.
-- **`/milestone-06-implementation/`**
-  - *Lab 11 Deliverable:* Phased 6–12 month implementation roadmap, change management strategy, staff training protocols, data governance policies, and target key performance indicators (KPIs).
+**Consulting Objective:** Recommend and prototype a practical, affordable, and staged digital transformation (6–12 month horizon) tailored to a mid-sized organization with limited IT staff—integrating people, processes, and technology across store associates, repair technicians, store managers, and customers.
 
 ---
 
-## Executive Presentation
-- Our recorded 10-minute executive consulting presentation (slides and narrated MP4 video) is submitted directly via Canvas, with all slides drawing directly from the verified artifacts housed within this repository.
+## Repository Structure & Lab Artifacts
+
+All artifacts are organized under `IS3060 - KPMG - TrackA/`:
+
+### 1. Business Intelligence & Problem Definition (`lab2-tableau/`)
+Analyzes rental and repair operations data (`woc_track_a_rentals.csv`) to identify operational bottlenecks, inventory/repair visibility gaps, and utilization patterns.
+- `Part2_WOC_Dashboard.twb` — Tableau workbook containing WOC rental/operations visualizations.
+- `Tableu Reflection & Memo.docx` — Consulting memo and analytical reflection on findings from the WOC dataset.
+- `Tableu1.png` – `Tableu5.png` — Exported dashboard and worksheet screenshots illustrating key metrics and findings.
+
+### 2. User Experience Prototype (`Lab3-mobile-app/`)
+Demonstrates a mobile/user-facing interface prototype and workflow design for interacting with equipment/rental processes.
+- `User_Page1.png` – `User_Page3.png` — User interface screens from the mobile prototype.
+- `Code_Page1.png` – `Code_Page3.png` — Underlying build/logic/code views supporting the prototype.
+- `Lab 3 Reflection ^0 Consulting (1).pdf` — Reflection and consulting notes connecting the UX prototype to WOC's operational needs.
+
+### 3. Process & Web Application Prototype (`lab7-web-app/`)
+Iterates on a web-based prototype across multiple versions to support a more unified digital workflow.
+- `index_v1.html.html`, `index_v2.html.html`, `index_v3.html.html` — Iterative versions of the web application prototype.
+- `web_screenshot_1.png` – `web_screenshot_4.png` — Screenshots capturing the web prototype interface and features.
+- `Lab7_Web_Evidence.pdf` — Documentation/evidence summarizing the web prototype build and functionality.
+
+### 4. AI-Enabled Customer Engagement Prototype (`lab8-ai-social-media-assistant/`)
+Explores AI-assisted customer communication/engagement to help address multi-channel inquiries and responsiveness.
+- `Lab8_AI_Social_Media_Assistant_Evidence.pdf` — Evidence and documentation for the AI social media assistant prototype.
+
+### 5. AI Opportunity Evaluation & Outsourcing (`lab10-ai-outsourcing/`)
+Evaluates AI models, external/outsourced options, and strategic/executive considerations for responsible AI adoption and implementation.
+- `Lab_10_Decathlon_AI_Executive_Proposal (1).docx` — Executive proposal document evaluating AI/outsourcing options and recommendations.
+- `Teach_Machine_AI_model.png` — Teachable Machine AI model setup/training visual evidence.
+- `AI_model_Test_01.png`, `AI_model_Test_02.png` — Test results and evaluation screenshots for the AI model.
+- `outsource_candidate_01.png` – `outsource_candidate_03.png` — Candidate evaluation screenshots/evidence for outsourcing/solution options.
+
+---
+
+## Final Deliverable Notes
+
+- **Audit Trail:** Artifacts are maintained progressively in this repository to support our final consulting recommendation.
+- **Executive Presentation:** A 10-minute (~10–12 slide) narrated presentation drawing directly from the committed lab artifacts above, including prototype walkthroughs and a practical 6–12 month rollout/change management plan for WOC.
