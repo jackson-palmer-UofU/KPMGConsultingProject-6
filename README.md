@@ -31,7 +31,6 @@ Wasatch Outfitters Collective (WOC) is a growing outdoor recreation and retail b
 
 ## Repository Structure & Lab Artifacts
 
-All artifacts are organized under `IS3060 - KPMG - TrackA/`:
 
 ### 1. Business Intelligence & Problem Definition (`lab2-tableau/`)
 Analyzes rental and repair operations data (`woc_track_a_rentals.csv`) to identify operational bottlenecks, inventory/repair visibility gaps, and utilization patterns.
