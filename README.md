@@ -41,14 +41,14 @@ Analyzes rental and repair operations data (`woc_track_a_rentals.csv`) to identi
 
 ### 2. User Experience Prototype (`Lab3-mobile-app/`)
 Demonstrates a mobile/user-facing interface prototype and workflow design for interacting with equipment/rental processes.
-- `User_Page1.png` – `User_Page3.png` — User interface screens from the mobile prototype.
-- `Code_Page1.png` – `Code_Page3.png` — Underlying build/logic/code views supporting the prototype.
+- `User_Page1.png` through `User_Page3.png` — User interface screens from the mobile prototype.
+- `Code_Page1.png` through `Code_Page3.png` — Underlying build/logic/code views supporting the prototype.
 - `Lab 3 Reflection ^0 Consulting (1).pdf` — Reflection and consulting notes connecting the UX prototype to WOC's operational needs.
 
 ### 3. Process & Web Application Prototype (`lab7-web-app/`)
 Iterates on a web-based prototype across multiple versions to support a more unified digital workflow.
 - `index_v1.html.html`, `index_v2.html.html`, `index_v3.html.html` — Iterative versions of the web application prototype.
-- `web_screenshot_1.png` – `web_screenshot_4.png` — Screenshots capturing the web prototype interface and features.
+- `web_screenshot_1.png` through `web_screenshot_4.png` — Screenshots capturing the web prototype interface and features.
 - `Lab7_Web_Evidence.pdf` — Documentation/evidence summarizing the web prototype build and functionality.
 
 ### 4. AI-Enabled Customer Engagement Prototype (`lab8-ai-social-media-assistant/`)
