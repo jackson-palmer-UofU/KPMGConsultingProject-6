@@ -1,0 +1,2537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page metadata -->
+    <title>Investment Research Request Tracker | Finance</title>
+    <meta name="description"
+        content="Centralized investment research request submission, tracking, prioritization, and status management.">
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <style>
+
+        /* =========================================================
+           GENERAL PAGE STYLES
+           ========================================================= */
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #1f2933;
+            background-color: #f7f9fb;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+        }
+
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        /* =========================================================
+           NAVIGATION
+           ========================================================= */
+
+        .navbar {
+            background-color: #102a43;
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
+            text-decoration: underline;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+        }
+
+        /* =========================================================
+           HERO SECTION
+           ========================================================= */
+
+        .hero {
+            background-color: #163d5c;
+            color: #ffffff;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 800px;
+        }
+
+        .hero-button {
+            background-color: #ffffff;
+            color: #163d5c;
+            border: 2px solid #ffffff;
+            font-weight: 700;
+        }
+
+        .hero-button:hover,
+        .hero-button:focus {
+            background-color: #e8eef3;
+            color: #102a43;
+        }
+
+        /* =========================================================
+           SECTION STYLES
+           ========================================================= */
+
+        .section-padding {
+            padding: 70px 20px;
+        }
+
+        .section-title {
+            color: #102a43;
+            margin-bottom: 20px;
+        }
+
+        .section-intro {
+            max-width: 850px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* =========================================================
+           PROCESS CARDS
+           ========================================================= */
+
+        .process-card {
+            height: 100%;
+            border: 1px solid #d9e2ec;
+            border-radius: 10px;
+            background-color: #ffffff;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .process-card h3 {
+            color: #163d5c;
+            font-size: 1.25rem;
+        }
+
+        .process-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: #163d5c;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        /* =========================================================
+           NEW FEATURE #1:
+           STANDARDIZED RESEARCH REQUEST FORM
+           ========================================================= */
+
+        .form-section {
+            background-color: #eef3f7;
+        }
+
+        .request-form-card {
+            background-color: #ffffff;
+            border: 1px solid #d9e2ec;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .required-label::after {
+            content: " *";
+            color: #8a1c1c;
+        }
+
+        /* =========================================================
+           NEW FEATURE #2:
+           REQUEST QUEUE / STATUS TRACKER
+           ========================================================= */
+
+        .queue-section {
+            background-color: #ffffff;
+        }
+
+        .summary-card {
+            background-color: #ffffff;
+            border: 1px solid #d9e2ec;
+            border-radius: 10px;
+            padding: 20px;
+            height: 100%;
+        }
+
+        .summary-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #163d5c;
+        }
+
+        .filter-card {
+            background-color: #eef3f7;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .request-table {
+            background-color: #ffffff;
+        }
+
+        .request-table th {
+            white-space: nowrap;
+        }
+
+        .request-table td {
+            vertical-align: middle;
+        }
+
+        .priority-high {
+            font-weight: 700;
+            color: #7a1f1f;
+        }
+
+        .priority-medium {
+            font-weight: 700;
+            color: #664d03;
+        }
+
+        .priority-low {
+            font-weight: 700;
+            color: #185c2c;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .status-new {
+            background-color: #dce8f5;
+            color: #183b56;
+        }
+
+        .status-progress {
+            background-color: #fff1cc;
+            color: #664d03;
+        }
+
+        .status-review {
+            background-color: #e6def5;
+            color: #49336b;
+        }
+
+        .status-complete {
+            background-color: #d9f0df;
+            color: #185c2c;
+        }
+
+        /* =========================================================
+           CURRENT PROCESS INFORMATION
+           ========================================================= */
+
+        .cta-box {
+            background-color: #ffffff;
+            border-left: 5px solid #163d5c;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        /* =========================================================
+           CONTACT
+           ========================================================= */
+
+        .contact-section {
+            background-color: #f7f9fb;
+        }
+
+        /* =========================================================
+           FOOTER
+           ========================================================= */
+
+        footer {
+            background-color: #102a43;
+            color: #ffffff;
+            padding: 35px 20px;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        footer a:hover,
+        footer a:focus {
+            color: #d9e2ec;
+        }
+
+        /* =========================================================
+           MOBILE RESPONSIVENESS
+           ========================================================= */
+
+        @media (max-width: 768px) {
+
+            .hero {
+                padding: 70px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-padding {
+                padding: 50px 20px;
+            }
+
+            .request-table {
+                font-size: 0.9rem;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================================================
+         NAVIGATION BAR
+         ========================================================= -->
+
+    <nav class="navbar navbar-expand-lg sticky-top"
+        aria-label="Primary navigation">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="#home">
+                Investment Research Tracker
+            </a>
+
+            <!-- Mobile navigation button -->
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavigation"
+                aria-controls="mainNavigation"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavigation">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">
+                            About
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#submit-request">
+                            Submit Request
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#request-queue">
+                            Request Queue
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================================================
+         HERO SECTION
+         ========================================================= -->
+
+    <header id="home" class="hero">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-9">
+
+                    <p class="text-uppercase fw-bold mb-2">
+                        Finance • Investment Research
+                    </p>
+
+                    <h1>
+                        Tracking Investment Research Requests
+                    </h1>
+
+                    <p class="mt-4">
+
+                        A centralized process for organizing investment research
+                        requests, assigning work to research teams, monitoring
+                        priorities, and improving visibility across the
+                        investment organization.
+
+                    </p>
+
+                    <a href="#submit-request"
+                        class="btn hero-button btn-lg mt-3">
+
+                        Submit a Research Request
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         ABOUT THE PROCESS
+         CORE INFORMATION FROM DRAFT 1 RETAINED
+         ========================================================= -->
+
+    <section id="about" class="section-padding bg-white">
+
+        <div class="container">
+
+            <div class="text-center">
+
+                <h2 class="section-title">
+                    About the Process
+                </h2>
+
+                <p class="section-intro">
+
+                    The investment research request process connects Portfolio
+                    Managers and Senior Investment Analysts with Junior Financial
+                    Analysts and Quantitative Researchers. The goal is to create
+                    better visibility into research demand and ensure that the
+                    most important investment questions receive appropriate attention.
+
+                </p>
+
+            </div>
+
+
+            <!-- User groups -->
+
+            <div class="row g-4 mb-5">
+
+                <div class="col-md-4">
+
+                    <div class="process-card">
+
+                        <h3>
+                            Portfolio Managers & Senior Analysts
+                        </h3>
+
+                        <p>
+
+                            Submit research questions, identify investment needs,
+                            communicate deadlines, and provide context for
+                            requested analysis.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="process-card">
+
+                        <h3>
+                            Research Executors
+                        </h3>
+
+                        <p>
+
+                            Junior Financial Analysts and Quantitative Researchers
+                            review requests, perform analysis, gather data, and
+                            communicate progress or completed findings.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="process-card">
+
+                        <h3>
+                            Research Leadership
+                        </h3>
+
+                        <p>
+
+                            The Head of Research or CIO monitors team capacity,
+                            competing priorities, request volume, and overall
+                            research output.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Basic process flow -->
+
+            <h2 class="text-center section-title mb-4">
+
+                Basic Research Request Flow
+
+            </h2>
+
+
+            <div class="row g-4">
+
+                <div class="col-md-3">
+
+                    <div class="process-card">
+
+                        <span class="process-number">
+                            1
+                        </span>
+
+                        <h3>
+                            Submit
+                        </h3>
+
+                        <p>
+
+                            A PM or Senior Analyst identifies an investment
+                            research question and communicates the requested analysis.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div class="process-card">
+
+                        <span class="process-number">
+                            2
+                        </span>
+
+                        <h3>
+                            Review
+                        </h3>
+
+                        <p>
+
+                            The research team reviews the request, determines its
+                            priority, and identifies an appropriate analyst or researcher.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div class="process-card">
+
+                        <span class="process-number">
+                            3
+                        </span>
+
+                        <h3>
+                            Analyze
+                        </h3>
+
+                        <p>
+
+                            The assigned team member conducts the research,
+                            gathers relevant information, and develops the
+                            requested analysis.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div class="process-card">
+
+                        <span class="process-number">
+                            4
+                        </span>
+
+                        <h3>
+                            Deliver
+                        </h3>
+
+                        <p>
+
+                            Findings are returned to the requester and the
+                            research request is marked as complete for visibility
+                            across the team.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         NEW FEATURE #1:
+         STANDARDIZED RESEARCH REQUEST SUBMISSION FORM
+         ========================================================= -->
+
+    <section id="submit-request"
+        class="section-padding form-section">
+
+        <div class="container">
+
+            <div class="text-center">
+
+                <h2 class="section-title">
+                    Submit a Research Request
+                </h2>
+
+                <p class="section-intro">
+
+                    Use the standardized form below to submit an investment
+                    research request. Required information helps the research
+                    team understand the question, priority, sector, and expected
+                    completion date.
+
+                </p>
+
+            </div>
+
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-9">
+
+                    <div class="request-form-card">
+
+                        <form id="researchRequestForm">
+
+                            <div class="row g-3">
+
+
+                                <!-- Requester -->
+
+                                <div class="col-md-6">
+
+                                    <label for="requester"
+                                        class="form-label required-label">
+
+                                        Requester Name
+
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="requester"
+                                        placeholder="e.g., Alex Morgan"
+                                        required>
+
+                                </div>
+
+
+                                <!-- Requester role -->
+
+                                <div class="col-md-6">
+
+                                    <label for="requesterRole"
+                                        class="form-label required-label">
+
+                                        Requester Role
+
+                                    </label>
+
+                                    <select
+                                        class="form-select"
+                                        id="requesterRole"
+                                        required>
+
+                                        <option value="">
+                                            Select role
+                                        </option>
+
+                                        <option>
+                                            Portfolio Manager
+                                        </option>
+
+                                        <option>
+                                            Senior Investment Analyst
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <!-- Request title -->
+
+                                <div class="col-12">
+
+                                    <label for="requestTitle"
+                                        class="form-label required-label">
+
+                                        Research Request
+
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="requestTitle"
+                                        placeholder="e.g., Analyze recent semiconductor industry demand trends"
+                                        required>
+
+                                </div>
+
+
+                                <!-- Sector -->
+
+                                <div class="col-md-4">
+
+                                    <label for="sector"
+                                        class="form-label required-label">
+
+                                        Sector
+
+                                    </label>
+
+                                    <select
+                                        class="form-select"
+                                        id="sector"
+                                        required>
+
+                                        <option value="">
+                                            Select sector
+                                        </option>
+
+                                        <option>
+                                            Technology
+                                        </option>
+
+                                        <option>
+                                            Financials
+                                        </option>
+
+                                        <option>
+                                            Healthcare
+                                        </option>
+
+                                        <option>
+                                            Energy
+                                        </option>
+
+                                        <option>
+                                            Consumer
+                                        </option>
+
+                                        <option>
+                                            Industrials
+                                        </option>
+
+                                        <option>
+                                            Real Estate
+                                        </option>
+
+                                        <option>
+                                            Materials
+                                        </option>
+
+                                        <option>
+                                            Other
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <!-- Priority -->
+
+                                <div class="col-md-4">
+
+                                    <label for="priority"
+                                        class="form-label required-label">
+
+                                        Priority
+
+                                    </label>
+
+                                    <select
+                                        class="form-select"
+                                        id="priority"
+                                        required>
+
+                                        <option value="">
+                                            Select priority
+                                        </option>
+
+                                        <option value="High">
+                                            High
+                                        </option>
+
+                                        <option value="Medium">
+                                            Medium
+                                        </option>
+
+                                        <option value="Low">
+                                            Low
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <!-- Requested completion date -->
+
+                                <div class="col-md-4">
+
+                                    <label for="dueDate"
+                                        class="form-label required-label">
+
+                                        Requested Completion Date
+
+                                    </label>
+
+                                    <input
+                                        type="date"
+                                        class="form-control"
+                                        id="dueDate"
+                                        required>
+
+                                </div>
+
+
+                                <!-- Assigned analyst -->
+
+                                <div class="col-md-6">
+
+                                    <label for="assignedAnalyst"
+                                        class="form-label">
+
+                                        Preferred / Assigned Analyst
+
+                                    </label>
+
+                                    <select
+                                        class="form-select"
+                                        id="assignedAnalyst">
+
+                                        <option value="">
+                                            Assign during review
+                                        </option>
+
+                                        <option>
+                                            Maya Chen
+                                        </option>
+
+                                        <option>
+                                            Daniel Brooks
+                                        </option>
+
+                                        <option>
+                                            Sofia Patel
+                                        </option>
+
+                                        <option>
+                                            Ethan Williams
+                                        </option>
+
+                                        <option>
+                                            Quant Research Team
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <!-- Research type -->
+
+                                <div class="col-md-6">
+
+                                    <label for="researchType"
+                                        class="form-label required-label">
+
+                                        Research Type
+
+                                    </label>
+
+                                    <select
+                                        class="form-select"
+                                        id="researchType"
+                                        required>
+
+                                        <option value="">
+                                            Select type
+                                        </option>
+
+                                        <option>
+                                            Market Analysis
+                                        </option>
+
+                                        <option>
+                                            Company Analysis
+                                        </option>
+
+                                        <option>
+                                            Financial Modeling
+                                        </option>
+
+                                        <option>
+                                            Quantitative Analysis
+                                        </option>
+
+                                        <option>
+                                            Data Request
+                                        </option>
+
+                                        <option>
+                                            Other
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <!-- Description -->
+
+                                <div class="col-12">
+
+                                    <label for="description"
+                                        class="form-label required-label">
+
+                                        Request Details
+
+                                    </label>
+
+                                    <textarea
+                                        class="form-control"
+                                        id="description"
+                                        rows="4"
+                                        placeholder="Describe the investment question, information needed, and relevant context."
+                                        required></textarea>
+
+                                </div>
+
+
+                                <!-- Submit button -->
+
+                                <div class="col-12">
+
+                                    <button
+                                        type="submit"
+                                        class="btn btn-primary btn-lg">
+
+                                        Submit Research Request
+
+                                    </button>
+
+                                    <button
+                                        type="reset"
+                                        class="btn btn-outline-secondary btn-lg ms-2">
+
+                                        Clear Form
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </form>
+
+
+                        <!-- Success message -->
+
+                        <div
+                            id="formSuccess"
+                            class="alert alert-success mt-4 d-none"
+                            role="alert">
+
+                            <strong>Request submitted successfully.</strong>
+                            The request has been added to the research queue.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         NEW FEATURE #2:
+         DYNAMIC REQUEST QUEUE AND STATUS TRACKER
+         ========================================================= -->
+
+    <section id="request-queue"
+        class="section-padding queue-section">
+
+        <div class="container">
+
+            <div class="text-center">
+
+                <h2 class="section-title">
+                    Research Request Queue
+                </h2>
+
+                <p class="section-intro">
+
+                    Use the searchable queue to view current research requests,
+                    identify high-priority work, see assigned analysts, and
+                    monitor request status.
+
+                </p>
+
+            </div>
+
+
+            <!-- =====================================================
+                 REQUEST SUMMARY CARDS
+                 ===================================================== -->
+
+            <div class="row g-4 mb-4">
+
+                <div class="col-md-3">
+
+                    <div class="summary-card">
+
+                        <div class="text-muted">
+                            Total Requests
+                        </div>
+
+                        <div
+                            id="totalRequests"
+                            class="summary-number">
+
+                            0
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div class="summary-card">
+
+                        <div class="text-muted">
+                            High Priority
+                        </div>
+
+                        <div
+                            id="highPriorityRequests"
+                            class="summary-number">
+
+                            0
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div class="summary-card">
+
+                        <div class="text-muted">
+                            In Progress
+                        </div>
+
+                        <div
+                            id="inProgressRequests"
+                            class="summary-number">
+
+                            0
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div class="summary-card">
+
+                        <div class="text-muted">
+                            Completed
+                        </div>
+
+                        <div
+                            id="completedRequests"
+                            class="summary-number">
+
+                            0
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 SEARCH AND FILTER CONTROLS
+                 ===================================================== -->
+
+            <div class="filter-card">
+
+                <div class="row g-3">
+
+                    <!-- Search -->
+
+                    <div class="col-lg-4">
+
+                        <label for="searchInput"
+                            class="form-label fw-bold">
+
+                            Search Requests
+
+                        </label>
+
+                        <input
+                            type="search"
+                            class="form-control"
+                            id="searchInput"
+                            placeholder="Search request, requester, or analyst">
+
+                    </div>
+
+
+                    <!-- Sector filter -->
+
+                    <div class="col-md-6 col-lg-2">
+
+                        <label for="sectorFilter"
+                            class="form-label fw-bold">
+
+                            Sector
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="sectorFilter">
+
+                            <option value="All">
+                                All
+                            </option>
+
+                            <option>
+                                Technology
+                            </option>
+
+                            <option>
+                                Financials
+                            </option>
+
+                            <option>
+                                Healthcare
+                            </option>
+
+                            <option>
+                                Energy
+                            </option>
+
+                            <option>
+                                Consumer
+                            </option>
+
+                            <option>
+                                Industrials
+                            </option>
+
+                            <option>
+                                Real Estate
+                            </option>
+
+                            <option>
+                                Materials
+                            </option>
+
+                            <option>
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Priority filter -->
+
+                    <div class="col-md-6 col-lg-2">
+
+                        <label for="priorityFilter"
+                            class="form-label fw-bold">
+
+                            Priority
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="priorityFilter">
+
+                            <option value="All">
+                                All
+                            </option>
+
+                            <option>
+                                High
+                            </option>
+
+                            <option>
+                                Medium
+                            </option>
+
+                            <option>
+                                Low
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Status filter -->
+
+                    <div class="col-md-6 col-lg-2">
+
+                        <label for="statusFilter"
+                            class="form-label fw-bold">
+
+                            Status
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="statusFilter">
+
+                            <option value="All">
+                                All
+                            </option>
+
+                            <option value="New">
+                                New
+                            </option>
+
+                            <option value="In Progress">
+                                In Progress
+                            </option>
+
+                            <option value="Under Review">
+                                Under Review
+                            </option>
+
+                            <option value="Completed">
+                                Completed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Analyst filter -->
+
+                    <div class="col-md-6 col-lg-2">
+
+                        <label for="analystFilter"
+                            class="form-label fw-bold">
+
+                            Assigned Analyst
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="analystFilter">
+
+                            <option value="All">
+                                All
+                            </option>
+
+                            <option>
+                                Maya Chen
+                            </option>
+
+                            <option>
+                                Daniel Brooks
+                            </option>
+
+                            <option>
+                                Sofia Patel
+                            </option>
+
+                            <option>
+                                Ethan Williams
+                            </option>
+
+                            <option>
+                                Quant Research Team
+                            </option>
+
+                            <option>
+                                Unassigned
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mt-3">
+
+                    <button
+                        id="clearFilters"
+                        class="btn btn-outline-secondary">
+
+                        Clear Filters
+
+                    </button>
+
+                    <span
+                        id="resultCount"
+                        class="ms-3 text-muted">
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 REQUEST TABLE
+                 ===================================================== -->
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover request-table">
+
+                    <caption class="visually-hidden">
+                        Searchable and filterable investment research request queue
+                    </caption>
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th scope="col">
+                                ID
+                            </th>
+
+                            <th scope="col">
+                                Research Request
+                            </th>
+
+                            <th scope="col">
+                                Requester
+                            </th>
+
+                            <th scope="col">
+                                Sector
+                            </th>
+
+                            <th scope="col">
+                                Priority
+                            </th>
+
+                            <th scope="col">
+                                Assigned Analyst
+                            </th>
+
+                            <th scope="col">
+                                Due Date
+                            </th>
+
+                            <th scope="col">
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="requestTableBody">
+                        <!-- JavaScript populates this table -->
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                id="noResults"
+                class="alert alert-info d-none"
+                role="status">
+
+                No research requests match the selected search and filters.
+
+            </div>
+
+
+            <!-- =====================================================
+                 PROCESS IMPROVEMENT SUMMARY
+                 ===================================================== -->
+
+            <div class="cta-box mt-5">
+
+                <h2 class="h3">
+                    How the New Queue Improves the Process
+                </h2>
+
+                <ul class="mb-0">
+
+                    <li>
+                        Creates a single location for active research requests.
+                    </li>
+
+                    <li>
+                        Makes ownership and expected completion dates visible.
+                    </li>
+
+                    <li>
+                        Allows users to identify high-priority requests quickly.
+                    </li>
+
+                    <li>
+                        Search and sector filtering can help identify related
+                        or potentially duplicate research requests.
+                    </li>
+
+                    <li>
+                        Leadership can use the queue to understand workload
+                        and research team capacity.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CURRENT PROCESS INFORMATION
+         CORE INFORMATION FROM DRAFT 1 RETAINED
+         ========================================================= -->
+
+    <section class="section-padding updates-section">
+
+        <div class="container">
+
+            <div class="text-center">
+
+                <h2 class="section-title">
+                    Current Process Information
+                </h2>
+
+                <p class="section-intro">
+
+                    The original process is primarily informal. Requests may
+                    arrive through email, instant messaging, or conversations,
+                    making it difficult to maintain a complete and shared view
+                    of research activity.
+
+                </p>
+
+            </div>
+
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered align-middle bg-white">
+
+                    <caption class="visually-hidden">
+                        Original investment research process information
+                    </caption>
+
+                    <thead>
+
+                        <tr>
+
+                            <th scope="col">
+                                Process Area
+                            </th>
+
+                            <th scope="col">
+                                Current Situation
+                            </th>
+
+                            <th scope="col">
+                                Impact
+                            </th>
+
+                            <th scope="col">
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <th scope="row">
+                                Request Submission
+                            </th>
+
+                            <td>
+                                Requests are commonly submitted through email,
+                                Slack, Teams, or informal conversations.
+                            </td>
+
+                            <td>
+                                Requests can be difficult to locate and track.
+                            </td>
+
+                            <td>
+                                <span class="status-badge status-new">
+                                    Current
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th scope="row">
+                                Work Visibility
+                            </th>
+
+                            <td>
+                                There is no single queue showing which analyst
+                                owns each request.
+                            </td>
+
+                            <td>
+                                PMs and leadership may have difficulty estimating
+                                completion times.
+                            </td>
+
+                            <td>
+                                <span class="status-badge status-progress">
+                                    Needs Review
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th scope="row">
+                                Duplicate Research
+                            </th>
+
+                            <td>
+                                Similar requests can be submitted by multiple
+                                investment professionals.
+                            </td>
+
+                            <td>
+                                Analysts may repeat work that was recently completed.
+                            </td>
+
+                            <td>
+                                <span class="status-badge status-progress">
+                                    Needs Review
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th scope="row">
+                                Priority Management
+                            </th>
+
+                            <td>
+                                Urgent opportunities may compete with routine
+                                research requests.
+                            </td>
+
+                            <td>
+                                Important research may not receive attention
+                                at the appropriate time.
+                            </td>
+
+                            <td>
+                                <span class="status-badge status-progress">
+                                    Needs Review
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th scope="row">
+                                Research Completion
+                            </th>
+
+                            <td>
+                                Completed work is generally delivered directly
+                                to the original requester.
+                            </td>
+
+                            <td>
+                                Completed research may be difficult for other
+                                team members to discover later.
+                            </td>
+
+                            <td>
+                                <span class="status-badge status-new">
+                                    Current
+                                </span>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="cta-box mt-5">
+
+                <h2 class="h3">
+                    Current Process Focus
+                </h2>
+
+                <p class="mb-0">
+
+                    The basic process is centered on receiving and fulfilling
+                    individual research requests. The primary opportunity for
+                    improvement is creating greater visibility into request
+                    ownership, priority, workload, and completion status while
+                    reducing unnecessary duplication.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CONTACT SECTION
+         ========================================================= -->
+
+    <section id="contact"
+        class="section-padding contact-section">
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-8 text-center">
+
+                    <h2 class="section-title">
+                        Contact the Research Team
+                    </h2>
+
+                    <p>
+
+                        For questions about an investment research request,
+                        contact the research team or the appropriate research
+                        leadership representative.
+
+                    </p>
+
+                    <div class="mt-4">
+
+                        <p class="mb-1">
+
+                            <strong>
+                                Research Team:
+                            </strong>
+
+                            research@example.com
+
+                        </p>
+
+                        <p>
+
+                            <strong>
+                                Research Leadership:
+                            </strong>
+
+                            research-leadership@example.com
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-7">
+
+                    <p class="mb-2">
+                        <strong>
+                            Investment Research Tracker
+                        </strong>
+                    </p>
+
+                    <p class="mb-0">
+                        Finance Research Operations
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-5 text-md-end mt-3 mt-md-0">
+
+                    <a href="#home" class="me-3">
+                        Home
+                    </a>
+
+                    <a href="#about" class="me-3">
+                        About
+                    </a>
+
+                    <a href="#contact">
+                        Contact
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <hr class="my-4">
+
+
+            <p class="small mb-0">
+
+                Prototype process page. Content should be reviewed and approved
+                by the appropriate business, brand, accessibility, security,
+                privacy, and technical owners before production use.
+
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         CLIENT-SIDE FUNCTIONALITY ONLY
+         ========================================================= -->
+
+    <script>
+
+        /* =========================================================
+           INITIAL REQUEST DATA
+           
+           These sample requests represent the existing research queue.
+           New submissions are added to this client-side array.
+           ========================================================= */
+
+        let researchRequests = [
+
+            {
+                id: "RR-1001",
+                title: "Semiconductor Industry Demand Trends",
+                requester: "Alex Morgan",
+                sector: "Technology",
+                priority: "High",
+                analyst: "Maya Chen",
+                dueDate: "2026-11-03",
+                status: "In Progress"
+            },
+
+            {
+                id: "RR-1002",
+                title: "Regional Bank Earnings Comparison",
+                requester: "Jordan Lee",
+                sector: "Financials",
+                priority: "Medium",
+                analyst: "Daniel Brooks",
+                dueDate: "2026-11-06",
+                status: "New"
+            },
+
+            {
+                id: "RR-1003",
+                title: "Healthcare Services Valuation Review",
+                requester: "Taylor Smith",
+                sector: "Healthcare",
+                priority: "High",
+                analyst: "Sofia Patel",
+                dueDate: "2026-11-01",
+                status: "Under Review"
+            },
+
+            {
+                id: "RR-1004",
+                title: "Energy Price Scenario Analysis",
+                requester: "Morgan Davis",
+                sector: "Energy",
+                priority: "Medium",
+                analyst: "Quant Research Team",
+                dueDate: "2026-11-10",
+                status: "In Progress"
+            },
+
+            {
+                id: "RR-1005",
+                title: "Consumer Spending Data Request",
+                requester: "Chris Wilson",
+                sector: "Consumer",
+                priority: "Low",
+                analyst: "Ethan Williams",
+                dueDate: "2026-11-12",
+                status: "Completed"
+            },
+
+            {
+                id: "RR-1006",
+                title: "Industrial Automation Market Review",
+                requester: "Jamie Brown",
+                sector: "Industrials",
+                priority: "Medium",
+                analyst: "Maya Chen",
+                dueDate: "2026-11-08",
+                status: "New"
+            },
+
+            {
+                id: "RR-1007",
+                title: "Commercial Real Estate Exposure Analysis",
+                requester: "Alex Morgan",
+                sector: "Real Estate",
+                priority: "High",
+                analyst: "Daniel Brooks",
+                dueDate: "2026-11-04",
+                status: "In Progress"
+            }
+
+        ];
+
+
+        /* =========================================================
+           DOM ELEMENT REFERENCES
+           ========================================================= */
+
+        const form =
+            document.getElementById("researchRequestForm");
+
+        const formSuccess =
+            document.getElementById("formSuccess");
+
+        const tableBody =
+            document.getElementById("requestTableBody");
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const sectorFilter =
+            document.getElementById("sectorFilter");
+
+        const priorityFilter =
+            document.getElementById("priorityFilter");
+
+        const statusFilter =
+            document.getElementById("statusFilter");
+
+        const analystFilter =
+            document.getElementById("analystFilter");
+
+        const clearFilters =
+            document.getElementById("clearFilters");
+
+        const noResults =
+            document.getElementById("noResults");
+
+        const resultCount =
+            document.getElementById("resultCount");
+
+
+        /* =========================================================
+           HELPER FUNCTION:
+           CREATE A NEW REQUEST ID
+           ========================================================= */
+
+        function createRequestId() {
+
+            const number =
+                1001 + researchRequests.length;
+
+            return "RR-" + number;
+
+        }
+
+
+        /* =========================================================
+           HELPER FUNCTION:
+           FORMAT DATE
+           ========================================================= */
+
+        function formatDate(dateString) {
+
+            if (!dateString) {
+                return "";
+            }
+
+            const date =
+                new Date(dateString + "T00:00:00");
+
+            return date.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            });
+
+        }
+
+
+        /* =========================================================
+           HELPER FUNCTION:
+           CREATE PRIORITY DISPLAY
+           ========================================================= */
+
+        function getPriorityClass(priority) {
+
+            if (priority === "High") {
+                return "priority-high";
+            }
+
+            if (priority === "Medium") {
+                return "priority-medium";
+            }
+
+            return "priority-low";
+
+        }
+
+
+        /* =========================================================
+           HELPER FUNCTION:
+           CREATE STATUS BADGE
+           ========================================================= */
+
+        function getStatusBadge(status) {
+
+            let className = "status-new";
+
+            if (status === "In Progress") {
+                className = "status-progress";
+            }
+
+            if (status === "Under Review") {
+                className = "status-review";
+            }
+
+            if (status === "Completed") {
+                className = "status-complete";
+            }
+
+            return `
+                <span class="status-badge ${className}">
+                    ${status}
+                </span>
+            `;
+
+        }
+
+
+        /* =========================================================
+           RENDER REQUEST QUEUE
+           
+           This function applies:
+           - Search
+           - Sector filter
+           - Priority filter
+           - Status filter
+           - Analyst filter
+           ========================================================= */
+
+        function renderRequests() {
+
+            const searchTerm =
+                searchInput.value.toLowerCase().trim();
+
+            const selectedSector =
+                sectorFilter.value;
+
+            const selectedPriority =
+                priorityFilter.value;
+
+            const selectedStatus =
+                statusFilter.value;
+
+            const selectedAnalyst =
+                analystFilter.value;
+
+
+            const filteredRequests =
+                researchRequests.filter(request => {
+
+                    const searchableText = (
+
+                        request.id + " " +
+                        request.title + " " +
+                        request.requester + " " +
+                        request.sector + " " +
+                        request.analyst
+
+                    ).toLowerCase();
+
+
+                    const matchesSearch =
+                        searchableText.includes(searchTerm);
+
+
+                    const matchesSector =
+                        selectedSector === "All" ||
+                        request.sector === selectedSector;
+
+
+                    const matchesPriority =
+                        selectedPriority === "All" ||
+                        request.priority === selectedPriority;
+
+
+                    const matchesStatus =
+                        selectedStatus === "All" ||
+                        request.status === selectedStatus;
+
+
+                    const analystName =
+                        request.analyst || "Unassigned";
+
+
+                    const matchesAnalyst =
+                        selectedAnalyst === "All" ||
+                        analystName === selectedAnalyst;
+
+
+                    return (
+                        matchesSearch &&
+                        matchesSector &&
+                        matchesPriority &&
+                        matchesStatus &&
+                        matchesAnalyst
+                    );
+
+                });
+
+
+            /* Clear existing table rows */
+
+            tableBody.innerHTML = "";
+
+
+            /* Display filtered requests */
+
+            filteredRequests.forEach(request => {
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+
+                    <td>
+                        <strong>
+                            ${request.id}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${request.title}
+                    </td>
+
+                    <td>
+                        ${request.requester}
+                    </td>
+
+                    <td>
+                        ${request.sector}
+                    </td>
+
+                    <td>
+                        <span class="${getPriorityClass(request.priority)}">
+                            ${request.priority}
+                        </span>
+                    </td>
+
+                    <td>
+                        ${request.analyst || "Unassigned"}
+                    </td>
+
+                    <td>
+                        ${formatDate(request.dueDate)}
+                    </td>
+
+                    <td>
+
+                        <select
+                            class="form-select form-select-sm status-selector"
+                            data-id="${request.id}"
+                            aria-label="Update status for ${request.id}">
+
+                            <option
+                                value="New"
+                                ${request.status === "New" ? "selected" : ""}>
+                                New
+                            </option>
+
+                            <option
+                                value="In Progress"
+                                ${request.status === "In Progress" ? "selected" : ""}>
+                                In Progress
+                            </option>
+
+                            <option
+                                value="Under Review"
+                                ${request.status === "Under Review" ? "selected" : ""}>
+                                Under Review
+                            </option>
+
+                            <option
+                                value="Completed"
+                                ${request.status === "Completed" ? "selected" : ""}>
+                                Completed
+                            </option>
+
+                        </select>
+
+                    </td>
+
+                `;
+
+
+                tableBody.appendChild(row);
+
+            });
+
+
+            /* Display no-results message */
+
+            if (filteredRequests.length === 0) {
+
+                noResults.classList.remove("d-none");
+
+            } else {
+
+                noResults.classList.add("d-none");
+
+            }
+
+
+            /* Update result count */
+
+            resultCount.textContent =
+                `${filteredRequests.length} request(s) shown`;
+
+
+            /* Update summary cards */
+
+            updateSummary();
+
+        }
+
+
+        /* =========================================================
+           UPDATE SUMMARY CARDS
+           ========================================================= */
+
+        function updateSummary() {
+
+            const total =
+                researchRequests.length;
+
+
+            const highPriority =
+                researchRequests.filter(
+                    request => request.priority === "High"
+                ).length;
+
+
+            const inProgress =
+                researchRequests.filter(
+                    request => request.status === "In Progress"
+                ).length;
+
+
+            const completed =
+                researchRequests.filter(
+                    request => request.status === "Completed"
+                ).length;
+
+
+            document.getElementById(
+                "totalRequests"
+            ).textContent = total;
+
+
+            document.getElementById(
+                "highPriorityRequests"
+            ).textContent = highPriority;
+
+
+            document.getElementById(
+                "inProgressRequests"
+            ).textContent = inProgress;
+
+
+            document.getElementById(
+                "completedRequests"
+            ).textContent = completed;
+
+        }
+
+
+        /* =========================================================
+           NEW FEATURE #1 FUNCTIONALITY:
+           SUBMIT STANDARDIZED REQUEST
+           ========================================================= */
+
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+
+            /* Read form values */
+
+            const requester =
+                document.getElementById("requester").value.trim();
+
+            const requesterRole =
+                document.getElementById("requesterRole").value;
+
+            const title =
+                document.getElementById("requestTitle").value.trim();
+
+            const sector =
+                document.getElementById("sector").value;
+
+            const priority =
+                document.getElementById("priority").value;
+
+            const dueDate =
+                document.getElementById("dueDate").value;
+
+            const assignedAnalyst =
+                document.getElementById("assignedAnalyst").value;
+
+            const description =
+                document.getElementById("description").value.trim();
+
+
+            /* Determine assignment */
+
+            const analyst =
+                assignedAnalyst || "Unassigned";
+
+
+            /* Create request object */
+
+            const newRequest = {
+
+                id: createRequestId(),
+
+                title: title,
+
+                requester:
+                    requester + " (" + requesterRole + ")",
+
+                sector: sector,
+
+                priority: priority,
+
+                analyst: analyst,
+
+                dueDate: dueDate,
+
+                status: "New",
+
+                description: description
+
+            };
+
+
+            /* Add new request to queue */
+
+            researchRequests.unshift(newRequest);
+
+
+            /* Reset form */
+
+            form.reset();
+
+
+            /* Display confirmation */
+
+            formSuccess.classList.remove("d-none");
+
+
+            /* Refresh queue */
+
+            renderRequests();
+
+
+            /* Scroll user to queue */
+
+            document
+                .getElementById("request-queue")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+
+            /* Hide success message after several seconds */
+
+            setTimeout(function() {
+
+                formSuccess.classList.add("d-none");
+
+            }, 5000);
+
+        });
+
+
+        /* =========================================================
+           STATUS TRACKER FUNCTIONALITY
+           
+           Users can change a request's status directly in the queue.
+           ========================================================= */
+
+        tableBody.addEventListener("change", function(event) {
+
+            if (
+                event.target.classList.contains("status-selector")
+            ) {
+
+                const requestId =
+                    event.target.dataset.id;
+
+                const newStatus =
+                    event.target.value;
+
+
+                const request =
+                    researchRequests.find(
+                        item => item.id === requestId
+                    );
+
+
+                if (request) {
+
+                    request.status = newStatus;
+
+                    renderRequests();
+
+                }
+
+            }
+
+        });
+
+
+        /* =========================================================
+           SEARCH AND FILTER EVENT LISTENERS
+           ========================================================= */
+
+        searchInput.addEventListener(
+            "input",
+            renderRequests
+        );
+
+
+        sectorFilter.addEventListener(
+            "change",
+            renderRequests
+        );
+
+
+        priorityFilter.addEventListener(
+            "change",
+            renderRequests
+        );
+
+
+        statusFilter.addEventListener(
+            "change",
+            renderRequests
+        );
+
+
+        analystFilter.addEventListener(
+            "change",
+            renderRequests
+        );
+
+
+        /* =========================================================
+           CLEAR FILTERS
+           ========================================================= */
+
+        clearFilters.addEventListener(
+            "click",
+            function() {
+
+                searchInput.value = "";
+
+                sectorFilter.value = "All";
+
+                priorityFilter.value = "All";
+
+                statusFilter.value = "All";
+
+                analystFilter.value = "All";
+
+                renderRequests();
+
+            }
+        );
+
+
+        /* =========================================================
+           INITIALIZE PAGE
+           ========================================================= */
+
+        renderRequests();
+
+    </script>
+
+
+    <!-- Bootstrap JavaScript -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+
+</html>
