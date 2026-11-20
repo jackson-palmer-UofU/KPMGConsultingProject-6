@@ -3,7 +3,17 @@
 **Client:** Wasatch Outfitters Collective (WOC)  
 **Consulting Track:** Track A — Digital Transformation  
 **Course:** IS 3060 (David Eccles School of Business, University of Utah)
+---
+## About the Consulting Team
 
+We are a student consulting team in **IS 3060** at the **University of Utah's David Eccles School of Business**, partnering on the **KPMG-Sponsored IS Consulting Challenge** for **Track A: Digital Transformation** (`Wasatch Outfitters Collective`).
+
+- **Jackson Palmer**
+- **Bessie Ibanez**
+- **Samuel Meyers**
+- **Landon Peartree**
+
+Together, we examine WOC's disconnected rental spreadsheets, unlinked repair logs, and cross-store coordination gaps across **Downtown SLC**, **Sandy**, and **Park City** to recommend a practical, staged 6–12 month digital solution backed by progressive lab evidence.
 ---
 
 ## Executive Problem Statement
