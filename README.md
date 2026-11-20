@@ -14,6 +14,7 @@ We are a student consulting team in **IS 3060** at the **University of Utah's Da
 - **Landon Peartree**
 
 Together, we examine WOC's disconnected rental spreadsheets, unlinked repair logs, and cross-store coordination gaps across **Downtown SLC**, **Sandy**, and **Park City** to recommend a practical, staged 6–12 month digital solution backed by progressive lab evidence.
+
 ---
 
 ## Executive Problem Statement
