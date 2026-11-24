@@ -62,9 +62,17 @@ Evaluates AI models, external/outsourced options, and strategic/executive consid
 - `AI_model_Test_01.png`, `AI_model_Test_02.png` — Test results and evaluation screenshots for the AI model.
 - `outsource_candidate_01.png` – `outsource_candidate_03.png` — Candidate evaluation screenshots/evidence for outsourcing/solution options.
 
+### Final Consulting Recommendation (`WOC_TrackA_Final_Recommendation.pdf`)
+
+* **File Description:** Executive consulting brief synthesizing our team's end-to-end Track A (Digital Transformation) solution for Wasatch Outfitters Collective. It connects our semester dependency chain—from multi-store Tableau utilization analysis (`lab2-tableau`) and interactive rental/repair prototypes (`Lab3-mobile-app`, `lab7-web-app`) to AI support evaluation (`lab8`, `lab10`)—into a practical, three-phase **6–12 month implementation roadmap**.
+* **Summary of Recommendation:**
+  * **Phase 1 (Months 1–3) — Centralized Rental & Repair Hub:** Consolidate Downtown SLC, Sandy, and Park City onto a single cloud rental and repair platform with automated repair status locks to eliminate double-bookings and damaged-gear checkouts.
+  * **Phase 2 (Months 4–6) — Real-Time Managerial BI:** Connect unified operational data into standardized Tableau dashboards for cross-store inventory visibility, utilization tracking, and repair turnaround monitoring.
+  * **Phase 3 (Months 7–12) — AI Support Triage & Access Governance:** Roll out human-supervised AI assistance for routine customer inquiries alongside Role-Based Access Control (RBAC) and automated seasonal employee offboarding.
+
 ---
 
-## Final Deliverable Notes
+## Deliverable Notes
 
 - **Audit Trail:** Artifacts are maintained progressively in this repository to support our final consulting recommendation.
 - **Executive Presentation:** A 10-minute (~10–12 slide) narrated presentation drawing directly from the committed lab artifacts above, including prototype walkthroughs and a practical 6–12 month rollout/change management plan for WOC.
