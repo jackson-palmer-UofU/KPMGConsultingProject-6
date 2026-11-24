@@ -33,29 +33,29 @@ Wasatch Outfitters Collective (WOC) is a growing outdoor recreation and retail b
 
 All artifacts are organized under `IS3060 - KPMG - TrackA/`:
 
-### 1. Business Intelligence & Problem Definition (`lab2-tableau/`)
+### 1. Business Intelligence & Problem Definition - milestone-01 (`lab2-tableau/`)
 Analyzes rental and repair operations data (`woc_track_a_rentals.csv`) to identify operational bottlenecks, inventory/repair visibility gaps, and utilization patterns.
 - `Part2_WOC_Dashboard.twb` — Tableau workbook containing WOC rental/operations visualizations.
 - `Tableu Reflection & Memo.docx` — Consulting memo and analytical reflection on findings from the WOC dataset.
 - `Tableu1.png` – `Tableu5.png` — Exported dashboard and worksheet screenshots illustrating key metrics and findings.
 
-### 2. User Experience Prototype (`Lab3-mobile-app/`)
+### 2. User Experience Prototype - milestone-02 (`Lab3-mobile-app/`)
 Demonstrates a mobile/user-facing interface prototype and workflow design for interacting with equipment/rental processes.
 - `User_Page1.png` through `User_Page3.png` — User interface screens from the mobile prototype.
 - `Code_Page1.png` through `Code_Page3.png` — Underlying build/logic/code views supporting the prototype.
 - `Lab 3 Reflection ^0 Consulting (1).pdf` — Reflection and consulting notes connecting the UX prototype to WOC's operational needs.
 
-### 3. Process & Web Application Prototype (`lab7-web-app/`)
+### 3. Process & Web Application Prototype - milestone-03 (`lab7-web-app/`)
 Iterates on a web-based prototype across multiple versions to support a more unified digital workflow.
 - `index_v1.html.html`, `index_v2.html.html`, `index_v3.html.html` — Iterative versions of the web application prototype.
 - `web_screenshot_1.png` through `web_screenshot_4.png` — Screenshots capturing the web prototype interface and features.
 - `Lab7_Web_Evidence.pdf` — Documentation/evidence summarizing the web prototype build and functionality.
 
-### 4. AI-Enabled Customer Engagement Prototype (`lab8-ai-social-media-assistant/`)
+### 4. AI-Enabled Customer Engagement Prototype - milestone-04 (`lab8-ai-social-media-assistant/`)
 Explores AI-assisted customer communication/engagement to help address multi-channel inquiries and responsiveness.
 - `Lab8_AI_Social_Media_Assistant_Evidence.pdf` — Evidence and documentation for the AI social media assistant prototype.
 
-### 5. AI Opportunity Evaluation & Outsourcing (`lab10-ai-outsourcing/`)
+### 5. AI Opportunity Evaluation & Outsourcing - milestone-05 (`lab10-ai-outsourcing/`)
 Evaluates AI models, external/outsourced options, and strategic/executive considerations for responsible AI adoption and implementation.
 - `Lab_10_Decathlon_AI_Executive_Proposal (1).docx` — Executive proposal document evaluating AI/outsourcing options and recommendations.
 - `Teach_Machine_AI_model.png` — Teachable Machine AI model setup/training visual evidence.
